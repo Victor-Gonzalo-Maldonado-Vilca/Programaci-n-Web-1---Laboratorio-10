@@ -1,12 +1,12 @@
 * {
   margin: 0px;
 }
-#cuerpo {
+.cuerpo {
   background-image: url("http://localhost/Uni.jpg");
   background-size: cover;
   background-repeat: no-repeat; 
 }
-#titulo {
+.titulo {
   text-align: center;
   font: bold 55px Arial; 
   margin-bottom: 50px;
@@ -42,6 +42,7 @@
   border-radius: 20px;
   padding-left: 15px; 
   border: 2px solid #969696;
+  font-family: Arial;
 }
 #cuadrostexto .botont input:hover {
   border-color: #707070;
@@ -49,4 +50,36 @@
 #cuadrostexto .botont input:focus {
   border: 2px solid #383838;
   outline: none;
+}
+#botons {
+  display: block;
+  margin-top: 21px;
+  float: right;
+  margin-right: 720px;
+}
+#botons input{
+  border-radius: 20px;
+  height: 26px;
+  width: 90px;
+  background-color: #4cc1bb;
+  border: 1px solid #36b9b2;
+  color: #ffffff;
+  font: bold 15px Arial;
+}
+#botons input:hover {
+  background-color: #20b2aa;
+  border-color: #198e88;
+}
+#regreso {
+  border-radius: 20px;
+  height: 26px;
+  width: 90px;
+  background-color: #4cc1bb;
+  border: 1px solid #36b9b2;
+  color: #ffffff;
+  font: bold 15px Arial;
+}
+#regreso:hover {
+  background-color: #20b2aa;
+  border-color: #198e88;
 }
