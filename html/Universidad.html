@@ -9,10 +9,10 @@
     <meta name="description" content="Buscar Universidades"/>
     <meta name="keywords" content="Universidad, licencia, años, información"/>
   </head>
-  <body id="cuerpo">
-    <h1 id="titulo"><em>Búsqueda de Universidades</em></h1>
+  <body class="cuerpo">
+    <h1 class="titulo"><em>Búsqueda de Universidades</em></h1>
     <div = id="formulario">
-      <form method="post">
+      <form method="post" action="cgi-bin/universidad.cgi">
         <ol id="lista1">
           <li>Nombre Universidad</li>
           <li>Periodo Licenciamiento</li>
@@ -20,10 +20,11 @@
           <li>Denominación Programa</li>
         </ol>
         <ul id="cuadrostexto">
-          <li class="botont"><input type="text"></li>
-          <li class="botont"><input type="text"></li>
-          <li class="botont"><input type="text"></li>
-          <li class="botont"><input type="text"></li>
+          <li class="botont"><input type="text" name="nombre"></li>
+          <li class="botont"><input type="text" name="licencia"></li>
+          <li class="botont"><input type="text" name="departamento"></li>
+          <li class="botont"><input type="text" name="denominacion"></li>
+          <li id="botons"><input type="submit" value="Buscar"></li>
         </ul>
       </form>
     </div>
