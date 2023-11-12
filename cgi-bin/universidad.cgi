@@ -4,10 +4,10 @@ use warnings;
 use CGI;
 use Text::CSV;
 my $cgi = CGI->new;
-my $nombre = $cgi->param('nombre') || '';
-my $licencia = $cgi->param('licencia') || '';
-my $departamento = $cgi->param('departamento') || '';
-my $denominacion = $cgi->param('denominacion') || '';
+my $nombre = uc($cgi->param('nombre')) || '';
+my $licencia = uc($cgi->param('licencia')) || '';
+my $departamento = uc($cgi->param('departamento')) || '';
+my $denominacion = uc($cgi->param('denominacion')) || '';
 print $cgi->header(type   => 'text/html',charset => 'utf-8');
 my $archivo = '../htdocs/Programas de Universidades.csv';
 my $csv = Text::CSV->new({ binary => 1, auto_diag => 1, sep_char => '|' });
@@ -17,8 +17,8 @@ my @resultados;
 while(my $fila = $csv->getline($ma)){
   my %datos;
   @datos{@$header} = @$fila;
-  if ($datos{'NOMBRE'} =~ /$nombre/i || $datos{'ESTADO_LICENCIAMIENTO'} =~ /$licencia/i ||
-    $datos{'DEPARTAMENTO_LOCAL'} =~ /$departamento/i || $datos{'DENOMINACION_PROGRAMA'} =~ /$denominacion/i) {
+  if ($datos{'NOMBRE'} eq $nombre || $datos{'PERIODO_LICENCIAMIENTO'} eq $licencia ||
+    $datos{'DEPARTAMENTO_LOCAL'} eq $departamento || $datos{'DENOMINACION_PROGRAMA'} eq $denominacion) {
     push @resultados, \%datos;
   }
 }
@@ -43,6 +43,16 @@ print <<HTML;
           <th>Departamento Local</th>
           <th>Denominación Programa</th>
         </tr>
+HTML
+foreach my $resultado(@resultados){
+  print "<tr>";
+  print "<td>$resultado->{'NOMBRE'}</td>";
+  print "<td>$resultado->{'PERIODO_LICENCIAMIENTO'}</td>";
+  print "<td>$resultado->{'DEPARTAMENTO_LOCAL'}</td>";
+  print "<td>$resultado->{'DENOMINACION_PROGRAMA'}</td>";
+  print "</tr>";
+}
+print <<HTML;
       </table>
     </div>
     <div>
