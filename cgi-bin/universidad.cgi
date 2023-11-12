@@ -35,23 +35,22 @@ print <<HTML;
     <meta name="author" content="Victor Gonzalo Maldonado Vilca"/>
   </head>
   <body class="cuerpo">
-    <h1 class="titulo"><i>Resultados de B&uacute;squeda</i></h1>
-    <p>$nombre</p>
+    <h1 class="titulo"><i>Resultados de la Consulta</i></h1>
     <div>
-      <table>
+      <table id="tabla" border="1">
         <tr>
-          <th>Nombre de la Universidad</th>
-          <th>Estado de licenciamiento</th>
+          <th>Nombre Universidad</th>
+          <th>Per&iacute;odo de licenciamiento</th>
           <th>Departamento Local</th>
           <th>Denominaci&oacute;n Programa</th>
         </tr>
 HTML
 foreach my $resultado(@resultados){
-  print "<tr>";
-  print "<td>$resultado->{'NOMBRE'}</td>";
-  print "<td>$resultado->{'PERIODO_LICENCIAMIENTO'}</td>";
-  print "<td>$resultado->{'DEPARTAMENTO_LOCAL'}</td>";
-  print "<td>$resultado->{'DENOMINACION_PROGRAMA'}</td>";
+  print "<tr id='otrasfila'>";
+  print "<td class='columna'>$resultado->{'NOMBRE'}</td>";
+  print "<td class='columna'>$resultado->{'PERIODO_LICENCIAMIENTO'}</td>";
+  print "<td class='columna'>$resultado->{'DEPARTAMENTO_LOCAL'}</td>";
+  print "<td class='ultimac'>$resultado->{'DENOMINACION_PROGRAMA'}</td>";
   print "</tr>";
 }
 print <<HTML;
