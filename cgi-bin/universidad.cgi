@@ -8,8 +8,8 @@ my $nombre = $cgi->param('nombre') || '';
 my $licencia = $cgi->param('licencia') || '';
 my $departamento = $cgi->param('departamento') || '';
 my $denominacion = $cgi->param('denominacion') || '';
+print $cgi->header(type   => 'text/html',charset => 'utf-8');
 my $archivo = '../htdocs/Programas de Universidades.csv';
-print $cgi->header('text/html');
 my $csv = Text::CSV->new({ binary => 1, auto_diag => 1, sep_char => '|' });
 open my $ma, '<:encoding(latin1)', $archivo or die "No se puede abrir el archivo CSV: $archivo";
 my $header = $csv->getline($ma);
@@ -35,6 +35,16 @@ print <<HTML;
   </head>
   <body class="cuerpo">
     <h1 class="titulo"><i>Resultados de Búsqueda</i></h1>
+    <div>
+      <table>
+        <tr>
+          <th>Nombre de la Universidad</th>
+          <th>Estado de licenciamiento</th>
+          <th>Departamento Local</th>
+          <th>Denominación Programa</th>
+        </tr>
+      </table>
+    </div>
     <div>
       <form method="post" action="http://localhost/Universidad.html">
         <input id="regreso" type="submit" value="Regresar">
