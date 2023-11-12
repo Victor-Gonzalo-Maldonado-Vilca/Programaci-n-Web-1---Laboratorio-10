@@ -4,14 +4,15 @@ use warnings;
 use CGI;
 use Text::CSV;
 my $cgi = CGI->new;
+$cgi->charset('latin-1');
 my $nombre = uc($cgi->param('nombre')) || '';
 my $licencia = uc($cgi->param('licencia')) || '';
 my $departamento = uc($cgi->param('departamento')) || '';
 my $denominacion = uc($cgi->param('denominacion')) || '';
-print $cgi->header(type   => 'text/html',charset => 'utf-8');
+print $cgi->header(type   => 'text/html',charset => 'latin-1');
 my $archivo = '../htdocs/Programas de Universidades.csv';
 my $csv = Text::CSV->new({ binary => 1, auto_diag => 1, sep_char => '|' });
-open my $ma, '<:encoding(latin1)', $archivo or die "No se puede abrir el archivo CSV: $archivo";
+open my $ma, '<:encoding(latin-1)', $archivo or die "No se puede abrir el archivo CSV: $archivo";
 my $header = $csv->getline($ma);
 my @resultados;
 while(my $fila = $csv->getline($ma)){
@@ -28,20 +29,21 @@ print <<HTML;
 <html lang="es">
   <head>
     <title>Universidad</title>
-    <meta charset="utf-8"/>
+    <meta charset="latin-1"/>
     <link rel="stylesheet" href="http://localhost/estilosU.css"/>
     <link rel="icon" type="image/png" href="http://localhost/logo1.png"/>
     <meta name="author" content="Victor Gonzalo Maldonado Vilca"/>
   </head>
   <body class="cuerpo">
-    <h1 class="titulo"><i>Resultados de Búsqueda</i></h1>
+    <h1 class="titulo"><i>Resultados de B&uacute;squeda</i></h1>
+    <p>$nombre</p>
     <div>
       <table>
         <tr>
           <th>Nombre de la Universidad</th>
           <th>Estado de licenciamiento</th>
           <th>Departamento Local</th>
-          <th>Denominación Programa</th>
+          <th>Denominaci&oacute;n Programa</th>
         </tr>
 HTML
 foreach my $resultado(@resultados){
